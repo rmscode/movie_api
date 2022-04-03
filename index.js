@@ -76,7 +76,7 @@ let topMovies = [
 
 // Routing GET requests
 app.get('/', (req, res) => {
-  res.sendFile('public/index.html', { root: __dirname })
+  res.send(`<h1>Welcome to the homepage!!!!</h1>`)
 });
 
 app.get('/documentation', (req, res) => {
