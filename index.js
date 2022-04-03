@@ -11,6 +11,8 @@ const express = require('express'),
 // Morgan will log requests
 app.use(morgan('common'));
 
+app.use(express.static('public'));
+
 let topMovies = [
   {
     title: 'The Foreigner',
@@ -79,9 +81,9 @@ app.get('/', (req, res) => {
   res.send(`<h1>Welcome to the homepage!!!!</h1>`)
 });
 
-app.get('/documentation', (req, res) => {
-  res.sendFile('public/documentation.html', { root: __dirname })
-});
+// app.get('/documentation', (req, res) => {
+//   res.sendFile('public/documentation.html', { root: __dirname })
+// });
 
 app.get('/movies', (req, res) => {
   res.json(topMovies);
