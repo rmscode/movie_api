@@ -9,7 +9,7 @@ const express = require('express'),
   accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
 // Morgan will log requests
-app.use(morgan('common'));
+app.use(morgan('common', {stream: accessLogStream }));
 
 app.use(express.static('public'));
 
