@@ -65,30 +65,82 @@
             <th scope="col">Request</th>
             <th scope="col">URL</th>
             <th scope="col">HTTP Method</th>
+            <th scope="col">Query Params</th>
             <th scope="col">Request Format</th>
             <th scope="col">Response Format</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">Get all Jackie Chan movies</th>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>--</td>
+            <td>N/A (via URL only)</td>
             <td>. . .</td>
+          </tr>
+          <tr>
+            <th scope="row">Get single Jackie Chan movie by title</th>
+            <td>/movies/<span style='color:red;'>Title</span></td>
+            <td>GET</td>
+            <td><span style='color:red;'>Title</span> is case and spelling sensitive. Must match DB.</td>
+            <td>N/A (via URL only)</td>
             <td>. . .</td>
+          </tr>
+          <tr>
+            <th scope="row">Get Jackie Chan movies by genre</th>
+            <td>/movies/genre/<span style='color:red;'>GenreName</span></td>
+            <td>GET</td>
+            <td><span style='color:red;'>GenreName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>N/A (via URL only)</td>
+            <td>. . .</td>
+          </tr>
+          <tr>
+            <th scope="row">Get director info by name</th>
+            <td>/directors/<span style='color:red;'>DirectorName</span></td>
+            <td>GET</td>
+            <td><span style='color:red;'>DirectorName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>N/A (via URL only)</td>
+            <td>. . .</td>
+          </tr>
+          <tr>
+            <th scope="row">Register new user</th>
+            <td>/users/new</td>
+            <td>POST</td>
+            <td>--</td>
             <td>. . .</td>
             <td>. . .</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>. . .</td>
-            <td>. . .</td>
+            <th scope="row">Update existing user's info</th>
+            <td>users/<span style='color:red;'>UserName</span>/edit</td>
+            <td>PUT</td>
+            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
             <td>. . .</td>
             <td>. . .</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
+            <th scope="row">Add movie to user's favorites</th>
+            <td>/users/<span style='color:red;'>UserName</span>/favorites/add/Id</td>
+            <td>POST</td>
+            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>N/A (via URL only)</td>
             <td>. . .</td>
+          </tr>
+          <tr>
+            <th scope="row">Remove movie from user's favorites</th>
+            <td>/users/<span style='color:red;'>UserName</span>/favorites/remove/Id</td>
+            <td>DELETE</td>
+            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>N/A (via URL only)</td>
             <td>. . .</td>
-            <td>. . .</td>
+          </tr>
+          <tr>
+            <th scope="row">Deregister existing user</th>
+            <td>/users/<span style='color:red;'>UserName</span>/remove</td>
+            <td>DELETE</td>
+            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
         </tbody>
