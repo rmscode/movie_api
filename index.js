@@ -13,7 +13,7 @@ app.use(morgan('common', {stream: accessLogStream }));
 
 app.use(express.static('public'));
 
-let topMovies = [
+let movies = [
 	{
 		id: 'the-foreigner',
 		title: 'The Foreigner',
@@ -86,18 +86,16 @@ let topMovies = [
 	},
 ];
 
-// Routing GET requests
+// Routing endpoints
 app.get('/', (req, res) => {
 	res.send(`<h1>Welcome to the homepage!!!!</h1>`)
 });
 
-// app.get('/documentation', (req, res) => {
-//   res.sendFile('public/documentation.html', { root: __dirname })
-// });
-
 app.get('/movies', (req, res) => {
-	res.json(topMovies);
+	res.json(movies);
 });
+
+
 
 // Error handling
 app.use((err, req, res, next) => {
