@@ -5,8 +5,11 @@ const express = require('express'),
 	path = require('path');
 	res = require('express/lib/response');
 	app = express();
+    bodyParser = require('body-parser');
 	// Create a write stream in append mode . . 'log.txt' is created in root dir
 	accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+
+app.use(bodyParser.json());
 
 // Morgan will log requests
 app.use(morgan('common', {stream: accessLogStream }));
