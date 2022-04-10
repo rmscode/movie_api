@@ -77,7 +77,7 @@
             <td>GET</td>
             <td>--</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>Array of JSON objects . . .</td>
           </tr>
           <tr>
             <th scope="row">Get single Jackie Chan movie by title</th>
@@ -85,7 +85,7 @@
             <td>GET</td>
             <td><span style='color:red;'>movieTitle</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>JSON object . . .</td>
           </tr>
           <tr>
             <th scope="row">Get info about genre</th>
@@ -93,7 +93,7 @@
             <td>GET</td>
             <td><span style='color:red;'>genreName</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>Json object . . .</td>
           </tr>
           <tr>
             <th scope="row">Get director info by name</th>
@@ -101,23 +101,44 @@
             <td>GET</td>
             <td><span style='color:red;'>directorName</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>JSON object . . .</td>
           </tr>
           <tr>
             <th scope="row">Register new user</th>
             <td>/users/new</td>
             <td>POST</td>
-            <td>--</td>
-            <td>. . .</td>
-            <td>. . .</td>
+            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
+            <td>
+              <pre>
+                <code>
+                  {
+                    "name" : "user_name",
+                    "passphrase" : "******",
+                    "email" : "123@456.com",
+                    "birthday" : "YYYY-MM-DD"
+                  }
+                </code>
+              </pre>
+            </td>
+            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Update existing user's info</th>
             <td>users/<span style='color:red;'>ID</span>/edit</td>
             <td>PUT</td>
             <td>User <span style='color:red;'>ID</span> must match DB.</td>
-            <td>. . .</td>
-            <td>. . .</td>
+            <td><pre>
+              <code>
+                {
+                  "id" : "userID"
+                  "name" : "user_name",
+                  "passphrase" : "******",
+                  "email" : "123@456.com",
+                  "birthday" : "YYYY-MM-DD"
+                }
+              </code>
+            </pre></td>
+            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Add movie to user's favorites</th>
@@ -125,7 +146,7 @@
             <td>POST</td>
             <td>User <span style='color:red;'>ID</span> + <span style='color:red;'>movieTitle</span> are case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Remove movie from user's favorites</th>
@@ -133,7 +154,7 @@
             <td>DELETE</td>
             <td>User <span style='color:red;'>ID</span> + <span style='color:red;'>movieTitle</span> are case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Deregister existing user</th>
@@ -141,7 +162,7 @@
             <td>DELETE</td>
             <td>User <span style='color:red;'>ID</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
-            <td>. . .</td>
+            <td>On success - Confirmation msg . . . <br>On error - Error msg + code . . .</td>
           </tr>
         </tbody>
       </table>
