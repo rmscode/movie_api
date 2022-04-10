@@ -11,91 +11,210 @@ const express = require('express'),
 // Morgan will log requests
 app.use(morgan('common', {stream: accessLogStream }));
 
+// Serving static html files
 app.use(express.static('public'));
+
+let users = [
+    {
+        id: 1,
+        name: "Ricky",
+        favoriteMovies: ["Rumble in the Bronx"]
+    },
+    {
+        id: 2,
+        name: "Sam",
+        favoriteMovies: []
+    },
+]
 
 let movies = [
 	{
-		id: 'the-foreigner',
-		title: 'The Foreigner',
-		releaseYear: '2017',
-		genres: ['Action', 'Thriller'],
-		stars: ['Katie Leung', 'Jackie Chan', 'Rufus Jones'],
+		Title: 'The Foreigner',
+        Description: 'Quan is a humble London businessman whose long-buried past erupts in a revenge-fueled vendetta when the only person left for him to love – his teenage daughter – dies in an Irish Republican Army car bombing. His relentless search to find the terrorists leads to a cat-and-mouse conflict with a British government official whose own past may hold the clues to the identities of the elusive killers.',
+        Director: {
+            Name: 'Martin Campbell',
+            DOB: '10-24-1943',
+        },
+		Genre:
+            {
+                Name: 'Action',
+                Description: 'Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats',
+            },
+		ReleaseDate: '09-28-2017',
+		Stars: ['Katie Leung', 'Jackie Chan', 'Rufus Jones'],
 	},
 	{
-		id: 'snake-in-the-eagles-shadow',
-		title: 'Snake in the Eagle\'s Shadow',
-		releaseYear: '1978',
-		genres: ['Action', 'Comedy'],
-		stars: ['Jackie Chan', 'Siu-Tin Yuen', 'Jeong-Ie Hwang'],
+		Title: 'Snake in the Eagle\'s Shadow',
+        Description: 'Everyone abuses and humiliates a downtrodden orphan (Chan) until he befriends an old man, who turns out to be the last master of the "snake fist" fighting style. Jackie becomes the old man\'s student and finds himself in battle with the master of the "eagle\'s claw" style, who has vowed to destroy the snake fist clan.',
+        Director: {
+            Name: 'Yuen Woo-ping',
+            DOB: '01-01-1945',
+        },
+		Genre:
+            {
+                Name: 'Comedy',
+                Description: 'A comedy film is a category of film which emphasizes humor. These films are designed to make the audience laugh through amusement.',
+            },
+		ReleaseDate: '11/05/1978',
+		Stars: ['Jackie Chan', 'Siu-Tin Yuen', 'Jeong-Ie Hwang'],
 	},
 	{
-		id: 'mr-nice-guy',
-		title: 'Mr. Nice Guy',
-		releaseYear: '1997',
-		genres: ['Action', 'Adventure', 'Comedy'],
-		stars: ['Jackie Chan', 'Richard Norton', 'Miki Lee'],
+		Title: 'Mr. Nice Guy',
+        Description: 'A Chinese chef accidentally gets involved with a news reporter who filmed a drug bust that went awry and is now being chased by gangs who are trying to get the video tape.',
+        Director: {
+            Name: 'Sammo Hung',
+            DOB: '01-07-1952',
+        },
+		Genre:
+            {
+                Name: 'Crime',
+                Description: 'Crime films, in the broadest sense, is a film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection.',
+            },
+		ReleaseDate: '03-18-1998',
+		Stars: ['Jackie Chan', 'Richard Norton', 'Miki Lee'],
 	},
 	{
-		id: 'the-young-master',
-		title: 'The Young Master',
-		releaseYear: '1980',
-		genres: ['Action', 'Adventure', 'Comedy'],
-		stars: ['Jackie Chan', 'Tin-Chi Lau', 'King Sang Tang'],
+		Title: 'The Young Master',
+        Description: '',
+        Director: {
+            Name: '',
+            DOB: '',
+        },
+		Genre:
+            {
+                Name: '',
+                Description: '',
+            },
+		ReleaseDate: '1980',
+		Stars: ['Jackie Chan', 'Tin-Chi Lau', 'King Sang Tang'],
 	},
 	{
-		id: 'police-story-4',
-		title: 'Police Story IV: First Strike',
-		releaseYear: '1996',
-		genres: ['Action', 'Adventure', 'Comedy'],
-		stars: ['Jackie Chan', 'Jackson Lou', 'Annie Wu'],
+		Title: 'Police Story IV: First Strike',
+        Description: '',
+        Director: {
+            Name: '',
+            DOB: '',
+        },
+		Genre:
+            {
+                Name: '',
+                Description: '',
+            },
+		ReleaseDate: '1996',
+		Stars: ['Jackie Chan', 'Jackson Lou', 'Annie Wu'],
 	},
 	{
-		id: 'crime-story',
-		title: 'Crime Story',
-		releaseYear: '1993',
-		genres: ['Action', 'Crime', 'Drama'],
-		stars: ['Jackie Chan', 'Kent Cheng', 'Kar-Ying Law'],
+		Title: 'Crime Story',
+        Description: '',
+        Director: {
+            Name: '',
+            DOB: '',
+        },
+		Genre:
+            {
+                Name: '',
+                Description: '',
+            },
+		ReleaseDate: '1993',
+		Stars: ['Jackie Chan', 'Kent Cheng', 'Kar-Ying Law'],
 	},
 	{
-		id: 'police-story-2',
-		title: 'Police Story 2',
-		releaseYear: '1998',
-		genres: ['Action', 'Comedy', 'Crime'],
-		stars: ['Jackie Chan', 'Michelle Yeoh', 'Maggie Cheung'],
+		Title: 'Police Story 2',
+        Description: '',
+        Director: {
+            Name: '',
+            DOB: '',
+        },
+		Genre:
+            {
+                Name: '',
+                Description: '',
+            },
+		ReleaseDate: '1998',
+		Stars: ['Jackie Chan', 'Michelle Yeoh', 'Maggie Cheung'],
 	},
 	{
-		id: 'drunken-master',
-		title: 'Drunken Master',
-		releaseYear: '1978',
-		genres: ['Action', 'Comedy'],
-		stars: ['Jackie Chan', 'Siu-Tin Yuen', 'Jeong-Iee Hwang'],
+		Title: 'Drunken Master',
+        Description: '',
+        Director: {
+            Name: '',
+            DOB: '',
+        },
+		Genre:
+            {
+                Name: '',
+                Description: '',
+            },
+		ReleaseDate: '1978',
+		Stars: ['Jackie Chan', 'Siu-Tin Yuen', 'Jeong-Iee Hwang'],
 	},
 	{
-		id: 'mr-canton-and-lady-rose',
-		title: 'Mr. Canton and Lady Rose',
-		releaseYear: '1989',
-		genres: ['Action', 'Comedy', 'Crime',],
-		stars: ['Jackie Chan', 'Anita Mui', 'Ah-lei Gua'],
+		Title: 'Mr. Canton and Lady Rose',
+        Description: '',
+        Director: {
+            Name: '',
+            DOB: '',
+        },
+		Genre:
+            {
+                Name: '',
+                Description: '',
+            },
+		ReleaseDate: '1989',
+		Stars: ['Jackie Chan', 'Anita Mui', 'Ah-lei Gua'],
 	},
 	{
-		id: 'rumble-in-the-bronx',
-		title: 'Rumble in the Bronx',
-		releaseYear: '1995',
-		genres: ['Action', 'Comedy', 'Crime'],
-		stars: ['Jackie Chan', 'Anita Mui', 'Francoise Yip'],
+		Title: 'Rumble in the Bronx',
+        Description: 'Keong comes from Hong Kong to visit New York for his uncle\'s wedding. His uncle runs a market in the Bronx and Keong offers to help out while Uncle is on his honeymoon. During his stay in the Bronx, Keong befriends a neighbor kid and beats up some neighborhood thugs who cause problems at the market. One of those petty thugs in the local gang stumbles into a criminal situation way over his head.',
+        Director: {
+            Name: 'Stanley Tong',
+            DOB: '04-07-1960',
+        },
+		Genre: [
+            {
+                Name: 'Crime',
+                Description: 'Crime films, in the broadest sense, is a film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection.',
+            },
+        ],
+		ReleaseDate: '02-26-1996',
+		Stars: ['Jackie Chan', 'Anita Mui', 'Francoise Yip'],
 	},
 ];
 
 // Routing endpoints
-app.get('/', (req, res) => {
-	res.send(`<h1>Welcome to the homepage!!!!</h1>`)
-});
-
 app.get('/movies', (req, res) => {
 	res.json(movies);
 });
 
+app.get('/movies/:title', (req, res) => {
+	const { title } = req.params;
+    const movie = movies.find( movie => movie.Title === title );
+        if (movie) {
+            res.status(200).json(movie);
+        } else {
+            res.status(400).send('no such movie')
+        }
+})
 
+app.get('/movies/genre/:genreName', (req, res) => {
+	const { genreName } = req.params;
+    const genre = movies.find( movie => movie.Genre.Name === genreName ).Genre;
+        if (genre) {
+            res.status(200).json(genre);
+        } else {
+            res.status(400).send('no such genre')
+        }
+})
+
+app.get('/movies/directors/:directorName', (req, res) => {
+	const { directorName } = req.params;
+    const director = movies.find( movie => movie.Director.Name === directorName ).Director;
+        if (director) {
+            res.status(200).json(director);
+        } else {
+            res.status(400).send('no such director')
+        }
+})
 
 // Error handling
 app.use((err, req, res, next) => {
