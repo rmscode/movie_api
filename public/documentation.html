@@ -81,25 +81,25 @@
           </tr>
           <tr>
             <th scope="row">Get single Jackie Chan movie by title</th>
-            <td>/movies/<span style='color:red;'>Title</span></td>
+            <td>/movies/<span style='color:red;'>movieTitle</span></td>
             <td>GET</td>
-            <td><span style='color:red;'>Title</span> is case and spelling sensitive. Must match DB.</td>
+            <td><span style='color:red;'>movieTitle</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
           <tr>
             <th scope="row">Get info about genre</th>
-            <td>/movies/genre/<span style='color:red;'>GenreName</span></td>
+            <td>/movies/genre/<span style='color:red;'>genreName</span></td>
             <td>GET</td>
-            <td><span style='color:red;'>GenreName</span> is case and spelling sensitive. Must match DB.</td>
+            <td><span style='color:red;'>genreName</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
           <tr>
             <th scope="row">Get director info by name</th>
-            <td>movies/directors/<span style='color:red;'>DirectorName</span></td>
+            <td>movies/directors/<span style='color:red;'>directorName</span></td>
             <td>GET</td>
-            <td><span style='color:red;'>DirectorName</span> is case and spelling sensitive. Must match DB.</td>
+            <td><span style='color:red;'>directorName</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
@@ -113,33 +113,33 @@
           </tr>
           <tr>
             <th scope="row">Update existing user's info</th>
-            <td>users/<span style='color:red;'>UserName</span>/edit</td>
+            <td>users/<span style='color:red;'>ID</span>/edit</td>
             <td>PUT</td>
-            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>User <span style='color:red;'>ID</span> must match DB.</td>
             <td>. . .</td>
             <td>. . .</td>
           </tr>
           <tr>
             <th scope="row">Add movie to user's favorites</th>
-            <td>/users/<span style='color:red;'>UserName</span>/favorites/add/Id</td>
+            <td>/users/<span style='color:red;'>ID</span>/favorites/add/<span style='color:red;'>movieTitle</span></td>
             <td>POST</td>
-            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>User <span style='color:red;'>ID</span> + <span style='color:red;'>movieTitle</span> are case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
           <tr>
             <th scope="row">Remove movie from user's favorites</th>
-            <td>/users/<span style='color:red;'>UserName</span>/favorites/remove/Id</td>
+            <td>/users/<span style='color:red;'>ID</span>/favorites/remove/<span style='color:red;'>movieTitle</span></td>
             <td>DELETE</td>
-            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>User <span style='color:red;'>ID</span> + <span style='color:red;'>movieTitle</span> are case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
           <tr>
             <th scope="row">Deregister existing user</th>
-            <td>/users/<span style='color:red;'>UserName</span>/remove</td>
+            <td>/users/<span style='color:red;'>ID</span>/remove</td>
             <td>DELETE</td>
-            <td><span style='color:red;'>UserName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>User <span style='color:red;'>ID</span> is case and spelling sensitive. Must match DB.</td>
             <td>N/A (via URL only)</td>
             <td>. . .</td>
           </tr>
