@@ -81,41 +81,82 @@
           </tr>
           <tr>
             <th scope="row">Get single Jackie Chan movie by title</th>
-            <td>/movies/<span style='color:red;'>movieTitle</span></td>
+            <td>/movies/<span style='color:red;'>[Title]</span></td>
             <td>GET</td>
-            <td><span style='color:red;'>movieTitle</span> is case and spelling sensitive. Must match DB.</td>
+            <td>:Title</td>
             <td>N/A (via URL only)</td>
-            <td>JSON object . . .</td>
+            <td>
+              <pre>
+                <code>
+                  {
+                    Title: '',
+                    Description: '',
+                    Premiere: '',
+                    Genre: {
+                      Name: '',
+                      Description: ''
+                    },
+                    Director: {
+                      Name: '',
+                      Bio: ''
+                    },
+                    Actors: [],
+                    ImagePath: '',
+                    Featured: ''
+                  }
+                </code>
+              </pre>
+            </td>
           </tr>
           <tr>
-            <th scope="row">Get info about genre</th>
-            <td>/movies/genre/<span style='color:red;'>genreName</span></td>
+            <th scope="row">Get info about a genre</th>
+            <td>/movies/genre/<span style='color:red;'>[type]</span></td>
             <td>GET</td>
-            <td><span style='color:red;'>genreName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>:Type</td>
             <td>N/A (via URL only)</td>
-            <td>Json object . . .</td>
+            <td>
+              <pre>
+                <code>
+                  {
+                    Type: '',
+                    Description: ''
+                  }
+                </code>
+              </pre>
+            </td>
           </tr>
           <tr>
             <th scope="row">Get director info by name</th>
-            <td>movies/directors/<span style='color:red;'>directorName</span></td>
+            <td>movies/directors/<span style='color:red;'>[name]</span></td>
             <td>GET</td>
-            <td><span style='color:red;'>directorName</span> is case and spelling sensitive. Must match DB.</td>
+            <td>:Name</td>
             <td>N/A (via URL only)</td>
-            <td>JSON object . . .</td>
+            <td>
+              <pre>
+                <code>
+                  {
+                    Name: '',
+                    Bio: ''
+                  }
+                </code>
+              </pre>
+            </td>
           </tr>
           <tr>
             <th scope="row">Register new user</th>
             <td>/users/new</td>
             <td>POST</td>
-            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
+            <td>N/A</td>
             <td>
+              Example:
               <pre>
                 <code>
                   {
-                    "name" : "user_name",
-                    "passphrase" : "******",
-                    "email" : "123@456.com",
-                    "birthday" : "YYYY-MM-DD"
+                    "Username": "Ricky",
+                    "Password": "******",
+                    "Email": "ricky@email.com",
+                    "Birthday": "1988-07-05",
+                    "FavoriteMovies": [ObjectId of Movie, ObjectId of Movie]
                   }
                 </code>
               </pre>
@@ -124,45 +165,45 @@
           </tr>
           <tr>
             <th scope="row">Update existing user's info</th>
-            <td>users/<span style='color:red;'>ID</span>/edit</td>
+            <td>users/<span style='color:red;'>[username]</span>/edit</td>
             <td>PUT</td>
-            <td>User <span style='color:red;'>ID</span> must match DB.</td>
-            <td><pre>
-              <code>
-                {
-                  "id" : "userID"
-                  "name" : "user_name",
-                  "passphrase" : "******",
-                  "email" : "123@456.com",
-                  "birthday" : "YYYY-MM-DD"
-                }
-              </code>
-            </pre></td>
+            <td>:Username</td>
+            <td>
+              <pre>
+                <code>
+                  {
+                    "Username": "Ricky",
+                    "Password": "******",
+                    "Email": "ricky@email.com",
+                    "Birthday": "1988-07-05"
+                  }
+                </code>
+              </pre>
+            </td>
             <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Add movie to user's favorites</th>
-            <td>/users/<span style='color:red;'>ID</span>/favorites/add/<span style='color:red;'>movieTitle</span></td>
+            <td>/users/<span style='color:red;'>[username]</span>/favorites/add/<span style='color:red;'>[movieid]</span></td>
             <td>POST</td>
-            <td>User <span style='color:red;'>ID</span> + <span style='color:red;'>movieTitle</span> are case and spelling sensitive. Must match DB.</td>
+            <td>:Username, :MovieID</td>
             <td>N/A (via URL only)</td>
-            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
+            <td>On success - Success msg . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Remove movie from user's favorites</th>
-            <td>/users/<span style='color:red;'>ID</span>/favorites/remove/<span style='color:red;'>movieTitle</span></td>
+            <td>/users/<span style='color:red;'>[Username]</span>/favorites/remove/<span style='color:red;'>[movieid]</span></td>
             <td>DELETE</td>
-            <td>User <span style='color:red;'>ID</span> + <span style='color:red;'>movieTitle</span> are case and spelling sensitive. Must match DB.</td>
-            <td>N/A (via URL only)</td>
-            <td>On success - JSON object . . . <br>On error - Error msg + code . . .</td>
+            <td>:Username, :MovieID</td>
+            <td>On success - Success msg . . . <br>On error - Error msg + code . . .</td>
           </tr>
           <tr>
             <th scope="row">Deregister existing user</th>
-            <td>/users/<span style='color:red;'>ID</span>/remove</td>
+            <td>/users/<span style='color:red;'>[username]</span>/remove</td>
             <td>DELETE</td>
-            <td>User <span style='color:red;'>ID</span> is case and spelling sensitive. Must match DB.</td>
+            <td>:Username</td>
             <td>N/A (via URL only)</td>
-            <td>On success - Confirmation msg . . . <br>On error - Error msg + code . . .</td>
+            <td>On success - Success msg . . . <br>On error - Error msg + code . . .</td>
           </tr>
         </tbody>
       </table>
