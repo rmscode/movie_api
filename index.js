@@ -9,6 +9,9 @@ const express = require('express'),
     uuid = require('uuid');
 	// Create a write stream in append mode . . 'log.txt' is created in root dir
 	accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+    Models = require('./models.js'),
+    Movies = Models.Movie,
+    Users = Models.User,
 
 app.use(bodyParser.json());
 
