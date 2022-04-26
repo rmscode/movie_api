@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
     },
     Director: {
         Name: String,
-        Bio: stringify,
+        Bio: String,
     },
     Actors: [String],
     ImagePath: String,
