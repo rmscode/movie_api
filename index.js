@@ -181,7 +181,7 @@ app.get('/movies/:Title', (req, res) => {
 
 // Get info about a genre
 app.get('/movies/genre/:Name', (req, res) => {
-    Movies.findOne({ 'Genre.Name': req.params.Name })
+    Movies.findOne({ 'Genre.Type': req.params.Type })
         .then((movie) => {
             res.json(movie.Genre.Description);
         })
