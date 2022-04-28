@@ -7,12 +7,23 @@ const express = require('express'),
     res = require('express/lib/response'),
     bodyParser = require('body-parser'),
     app = express(),
+    mongoose = require('mongoose'),
     Movies = Models.Movie,
     Users = Models.User,
     // Create a write stream in append mode . . 'log.txt' is created in root dir
     accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
         flags: 'a',
     });
+
+// Connect to MongoDB
+    mongoose.connect('mongodb://localhost:27017/jackieMovieAPI', { useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => {
+        console.log("CONNECTION OPEN!!!")
+    })
+    .catch(err => {
+        console.log("OH NO, ERROR!!!")
+        console.log(err)
+    })
 
 app.use(bodyParser.json());
 
