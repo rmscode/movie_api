@@ -16,14 +16,14 @@ const express = require('express'),
     });
 
 // Connect to MongoDB
-    mongoose.connect('mongodb://localhost:27017/jackieMovieAPI', { useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => {
-        console.log("CONNECTION OPEN!!!")
-    })
-    .catch(err => {
-        console.log("OH NO, ERROR!!!")
-        console.log(err)
-    })
+mongoose.connect('mongodb://localhost:27017/jackieMovieAPI', { useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+    console.log("CONNECTION TO MONGO OPEN!!!")
+})
+.catch(err => {
+    console.log("OH NO, ERROR CONNECTING TO MONGO!!!")
+    console.log(err)
+})
 
 app.use(bodyParser.json());
 
