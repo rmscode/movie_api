@@ -1,19 +1,37 @@
-// Importing modules
+// Import modules
 const express = require('express'),
-    Models = require('./models.js'),
     morgan = require('morgan'),
     fs = require('fs'),
     path = require('path'),
     res = require('express/lib/response'),
-    bodyParser = require('body-parser'),
-    app = express(),
     mongoose = require('mongoose'),
-    Movies = Models.Movie,
-    Users = Models.User,
-    // Create a write stream in append mode . . 'log.txt' is created in root dir
-    accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
-        flags: 'a',
-    });
+    Models = require('./models.js'),
+    bodyParser = require('body-parser');
+
+// Create Express app
+const app = express();
+    
+// Import User and Movie models
+const Users = Models.User;
+const Movies = Models.Movie;
+
+// Create a write stream in append mode . . .
+// 'log.txt' is created in root dir
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
+    flags: 'a'
+});
+
+// Middleware
+app.use(morgan('common')); //log stuff to console
+app.use(morgan('combined', { stream: accessLogStream })); //log stuff to log.txt
+app.use(express.static('public')); //serve static files
+app.use(bodyParser.json()); //parse headerbody
+app.use(bodyParser.urlencoded({ extended: true})); //parse headerbody
+
+// Import required for auth
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/jackieMovieAPI', { useNewUrlParser: true, useUnifiedTopology: true})
@@ -21,17 +39,9 @@ mongoose.connect('mongodb://localhost:27017/jackieMovieAPI', { useNewUrlParser: 
     console.log("CONNECTION TO MONGO OPEN!!!")
 })
 .catch(err => {
-    console.log("OH NO, ERROR CONNECTING TO MONGO!!!")
+    console.log("OH NO! ERROR TRYING TO CONNECT TO MONGO!!!")
     console.log(err)
 })
-
-app.use(bodyParser.json());
-
-// Morgan will log requests
-app.use(morgan('common', { stream: accessLogStream }));
-
-// Serving static html files
-app.use(express.static('public'));
 
 // BEGINNING of - Routing endpoints
 // Create new user
