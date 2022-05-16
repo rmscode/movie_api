@@ -6,7 +6,8 @@ const express = require('express'),
     res = require('express/lib/response'),
     mongoose = require('mongoose'),
     Models = require('./models.js'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    cors = require('cors');
 
 // Create Express app
 const app = express();
@@ -22,6 +23,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 });
 
 // Middleware
+app.use(cors()); //cross origin resource sharing
 app.use(morgan('common')); //log stuff to console
 app.use(morgan('combined', { stream: accessLogStream })); //log stuff to log.txt
 app.use(express.static('public')); //serve static files
