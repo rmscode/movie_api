@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+// Import modules
+const mongoose = require('mongoose'),
+    bcrypt = require('bcrypt');
 
 // Movie Schema
 const movieSchema = mongoose.Schema({
