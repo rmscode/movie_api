@@ -52,6 +52,7 @@ mongoose
 // BEGINNING of - Routing endpoints
 // Create new user
 app.post('/users/new', (req, res) => {
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if (user) {
@@ -61,7 +62,7 @@ app.post('/users/new', (req, res) => {
             } else {
                 Users.create({
                     Username: req.body.Username,
-                    Password: req.body.Password,
+                    Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday,
                 })
@@ -117,12 +118,13 @@ app.put(
     '/users/:Username/edit',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
+        let hashedPassword = Users.hashPassword(req.body.Password);
         Users.findOneAndUpdate(
             { Username: req.params.Username },
             {
                 $set: {
                     Username: req.body.Username,
-                    Password: req.body.Password,
+                    Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday,
                 },
