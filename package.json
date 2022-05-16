@@ -4,7 +4,7 @@
   "description": "An API that will deliver information about specific Jackie Chan movies.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
