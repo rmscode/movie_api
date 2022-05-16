@@ -7,7 +7,8 @@ const express = require('express'),
     mongoose = require('mongoose'),
     Models = require('./models.js'),
     bodyParser = require('body-parser'),
-    cors = require('cors');
+    cors = require('cors'),
+    { check, validationResult } = require('express-validator');
 
 // Create Express app
 const app = express();
