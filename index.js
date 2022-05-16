@@ -12,7 +12,7 @@ const express = require('express'),
 
 // Create Express app
 const app = express();
-    
+
 // Import User and Movie models
 const Users = Models.User;
 const Movies = Models.Movie;
@@ -20,7 +20,7 @@ const Movies = Models.Movie;
 // Create a write stream in append mode . . .
 // 'log.txt' is created in root dir
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
-    flags: 'a'
+    flags: 'a',
 });
 
 // Middleware
@@ -29,7 +29,7 @@ app.use(morgan('common')); //log stuff to console
 app.use(morgan('combined', { stream: accessLogStream })); //log stuff to log.txt
 app.use(express.static('public')); //serve static files
 app.use(bodyParser.json()); //parse headerbody
-app.use(bodyParser.urlencoded({ extended: true})); //parse headerbody
+app.use(bodyParser.urlencoded({ extended: true })); //parse headerbody
 
 // Import required for auth
 let auth = require('./auth')(app);
