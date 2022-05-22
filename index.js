@@ -38,7 +38,8 @@ require('./passport');
 
 // Connect to MongoDB
 mongoose
-    .connect('mongodb://localhost:27017/jackieMovieAPI', {
+    .connect( process.env.CONNECTION_URI, {
+    // .connect('mongodb://localhost:27017/jackieMovieAPI', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
