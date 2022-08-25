@@ -68,7 +68,6 @@ mongoose
 // Create new user
 app.post(
     '/users/new',
-    cors(allowedOrigins),
     [
         check('Username', 'Username is required').isLength({ min: 5 }),
         check(
@@ -116,7 +115,6 @@ app.post(
 // Get all users
 app.get(
     '/users',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Users.find()
@@ -133,7 +131,6 @@ app.get(
 // Get a user, by username
 app.get(
     '/users/:Username',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Users.findOne({ Username: req.params.Username })
@@ -150,7 +147,6 @@ app.get(
 // Update a user's info, by username
 app.put(
     '/users/:Username/edit',
-    cors(allowedOrigins),
     [
         check('Username', 'Username is required').isLength({ min: 5 }),
         check(
@@ -193,7 +189,6 @@ app.put(
 // Delete user
 app.delete(
     '/users/:Username/remove',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Users.findOneAndRemove({ Username: req.params.Username })
@@ -216,7 +211,6 @@ app.delete(
 // Add fav movie
 app.post(
     '/users/:Username/favorites/add/:MovieID',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Users.findOneAndUpdate(
@@ -240,7 +234,6 @@ app.post(
 // Delete fav movie
 app.delete(
     '/users/:Username/favorites/remove/:MovieID',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Users.findOneAndUpdate(
@@ -264,7 +257,6 @@ app.delete(
 // Get all movies
 app.get(
     '/movies',
-    cors(allowedOrigins),
     // passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Movies.find()
@@ -281,7 +273,6 @@ app.get(
 // Get a movie, by title
 app.get(
     '/movies/:Title',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Movies.findOne({ Title: req.params.Title })
@@ -298,7 +289,6 @@ app.get(
 // Get info about a genre
 app.get(
     '/movies/genre/:Name',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Movies.findOne({ 'Genre.Type': req.params.Type })
@@ -315,7 +305,6 @@ app.get(
 // Get info about a director
 app.get(
     '/movies/directors/:Name',
-    cors(allowedOrigins),
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Movies.findOne({ 'Director.Name': req.params.Name })
