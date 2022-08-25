@@ -27,7 +27,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 app.use(cors());
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://localhost:1234");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
