@@ -24,18 +24,16 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 });
 
 // Middleware
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
+// app.use(cors());
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-      return callback(new Error(message ), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://localhost:1234");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
   
 app.use(morgan('common')); //log stuff to console
 app.use(morgan('combined', { stream: accessLogStream })); //log stuff to log.txt
