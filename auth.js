@@ -1,12 +1,9 @@
 const jwtSecret = 'your_jwt_secret';
-const cors = require('cors');
 
 const jwt = require('jsonwebtoken'),
     passport = require('passport');
 
 require('./passport.js');
-
-app.use(cors());
 
 let generateJWTToken = (user) => {
     return jwt.sign(user, jwtSecret, {
