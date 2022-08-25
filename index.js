@@ -26,11 +26,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 // Middleware
 app.use(
   cors({
-    allowedHeaders: ["authorization", "Content-Type"], // you can change the headers
-    exposedHeaders: ["authorization"], // you can change the headers
     origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false
   });
 );
   
