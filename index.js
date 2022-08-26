@@ -24,7 +24,28 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 });
 
 // Middleware
-app.use(cors()); //cross origin resource sharing
+// app.use(cors()); //cross origin resource sharing
+let allowedOrigins = [
+  'http://localhost:8080',
+  'http://localhost:1234',
+  'http://localhost:3000',
+  'http://127.0.0.1:1234',
+  'http://127.0.0.1:8080',
+  'http://127.0.0.1:3000',
+  'https://jackie-chan-movie-api.herokuapp.com/'
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.use(morgan('common')); //log stuff to console
 app.use(morgan('combined', { stream: accessLogStream })); //log stuff to log.txt
 app.use(express.static('public')); //serve static files
