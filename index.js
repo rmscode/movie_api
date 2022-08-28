@@ -1,4 +1,4 @@
-// Import modules
+    // Import modules
 const express = require('express'),
   morgan = require('morgan'),
   fs = require('fs'),
@@ -10,21 +10,21 @@ const express = require('express'),
   cors = require('cors'),
   { check, validationResult } = require('express-validator');
 
-// Create Express app
+    // Create Express app
 const app = express();
 
-// Import User and Movie models
+    // Import User and Movie models
 const Users = Models.User;
 const Movies = Models.Movie;
 
-// Create a write stream in append mode . . .
-// 'log.txt' is created in root dir
+    // Create a write stream in append mode . . .
+    // 'log.txt' is created in root dir
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
   flags: 'a',
 });
 
-// Middleware
-// app.use(cors()); //cross origin resource sharing
+    // CORS
+    // app.use(cors()); //cross origin resource sharing
 let allowedOrigins = [
   'http://localhost:8080',
   'http://localhost:1234',
@@ -50,18 +50,19 @@ app.use(
   })
 );
 
+    // Middleware
 app.use(morgan('common')); //log stuff to console
 app.use(morgan('combined', { stream: accessLogStream })); //log stuff to log.txt
 app.use(express.static('public')); //serve static files
 app.use(bodyParser.json()); //parse headerbody
 app.use(bodyParser.urlencoded({ extended: true })); //parse headerbody
 
-// Import required for auth
+    // Import required for auth
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-// Connect to MongoDB
+    // Connect to MongoDB
 mongoose
   .connect(process.env.CONNECTION_URI, {
     // .connect('mongodb://localhost:27017/jackieMovieAPI', {
@@ -76,8 +77,8 @@ mongoose
     console.log(err);
   });
 
-// BEGINNING of - Routing endpoints
-// Create new user
+    // BEGINNING of - Routing endpoints
+    // Create new user
 app.post(
   '/users/new',
   [
@@ -122,7 +123,7 @@ app.post(
   }
 );
 
-// Get all users
+    // Get all users
 app.get(
   '/users',
   passport.authenticate('jwt', { session: false }),
@@ -138,7 +139,7 @@ app.get(
   }
 );
 
-// Get a user, by username
+    // Get a user, by username
 app.get(
   '/users/:Username',
   passport.authenticate('jwt', { session: false }),
@@ -154,7 +155,7 @@ app.get(
   }
 );
 
-// Update a user's info, by username
+    // Update a user's info, by username
 app.put(
   '/users/:Username/edit',
   [
@@ -196,7 +197,7 @@ app.put(
   }
 );
 
-// Delete user
+    // Delete user
 app.delete(
   '/users/:Username/remove',
   passport.authenticate('jwt', { session: false }),
@@ -216,7 +217,7 @@ app.delete(
   }
 );
 
-// Add fav movie
+    // Add fav movie
 app.post(
   '/users/:Username/favorites/add/:MovieID',
   passport.authenticate('jwt', { session: false }),
@@ -239,7 +240,7 @@ app.post(
   }
 );
 
-// Delete fav movie
+    // Delete fav movie
 app.delete(
   '/users/:Username/favorites/remove/:MovieID',
   passport.authenticate('jwt', { session: false }),
@@ -262,7 +263,7 @@ app.delete(
   }
 );
 
-// Get all movies
+    // Get all movies
 app.get(
   '/movies',
   passport.authenticate('jwt', { session: false }),
@@ -278,7 +279,7 @@ app.get(
   }
 );
 
-// Get a movie, by title
+    // Get a movie, by title
 app.get(
   '/movies/:Title',
   passport.authenticate('jwt', { session: false }),
@@ -294,7 +295,7 @@ app.get(
   }
 );
 
-// Get info about a genre
+    // Get info about a genre
 app.get(
   '/movies/genre/:Name',
   passport.authenticate('jwt', { session: false }),
@@ -310,7 +311,7 @@ app.get(
   }
 );
 
-// Get info about a director
+    // Get info about a director
 app.get(
   '/movies/directors/:Name',
   passport.authenticate('jwt', { session: false }),
@@ -326,7 +327,7 @@ app.get(
   }
 ); //END of - Routing endpoints
 
-// Error handling
+    // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!!!');
