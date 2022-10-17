@@ -33,6 +33,7 @@ let allowedOrigins = [
   'http://127.0.0.1:8080',
   'http://127.0.0.1:3000',
   'https://jackie-chan-movie-api.herokuapp.com/',
+  'https://jackie-chan-movie-db.netlify.app/',
 ];
 
 app.use(
